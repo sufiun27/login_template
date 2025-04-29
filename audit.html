@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Management System</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Lottie Player -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@1.7.0/dist/lottie-player.js"></script>
+  <style>
+    /* Ensure the main div takes up the full viewport */
+    .main-fullscreen {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Ensure lottie-player fills the container */
+    lottie-player {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+    }
+    /* Glassmorphism form styling */
+    .glass-form {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(0, 0, 0, 0.493));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    /* Transparent input fields */
+    .glass-input {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 0.75rem;
+      transition: border-color 0.3s ease;
+    }
+    .glass-input:focus {
+      outline: none;
+      border-color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .glass-input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    /* Submit button */
+    .glass-button {
+      background: linear-gradient(135deg, rgb(255, 107, 107), #ff3d3d);
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem;
+      color: white;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+    .glass-button:hover {
+      background: linear-gradient(135deg, #ff3d3d, #d32f2f);
+    }
+    /* Form title */
+    .form-title {
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    /* Project title */
+    .project-title {
+      color: #ffffff;
+      font-size: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-fullscreen">
+    <lottie-player 
+      src="./Animation1.json" 
+      background="transparent" 
+      speed="1" 
+      loop 
+      autoplay
+      onerror="console.error('Lottie animation failed to load');"
+    ></lottie-player>
+    <div class="text-danger position-absolute" id="lottie-error" style="display: none;">Failed to load animation.</div>
+    <!-- Glassmorphism Form -->
+    <div class="glass-form position-absolute">
+      <h2 class="project-title text-center">Audit Management System</h2>
+      <h3 class="form-title text-center mb-4">Login</h3>
+      <div class="mb-3">
+        <input type="email" name="email" class="form-control glass-input" placeholder="Email" value="abusufiun27@gmail.com" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" name="password" class="form-control glass-input" placeholder="Password" value="12345678" required>
+      </div>
+      <button type="button" class="glass-button">Submit</button>
+    </div>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Lottie animation control -->
+  <script>
+    const lottiePlayer = document.querySelector('lottie-player');
+    
+    // Error handling
+    lottiePlayer.addEventListener('error', () => {
+      document.getElementById('lottie-error').style.display = 'block';
+    });
+
+    // Control animation playback
+    lottiePlayer.addEventListener('ready', () => {
+      let direction = 1; // 1 for forward, -1 for reverse
+      lottiePlayer.setDirection(direction);
+      lottiePlayer.play();
+
+      // Toggle direction every 2 seconds
+      setInterval(() => {
+        direction = direction === 1 ? -1 : 1;
+        lottiePlayer.setDirection(direction);
+        lottiePlayer.play();
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
